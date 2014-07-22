@@ -46,7 +46,7 @@ shopt -s extglob
 # Try to figure out the os and arch for binary fetching
 uname="$(uname -a)"
 os=
-arch=x86
+arch=armv7l
 case "$uname" in
   Linux\ *) os=linux ;;
   Darwin\ *) os=darwin ;;
@@ -251,6 +251,9 @@ build () {
       0.[1234567]) binavail=0 ;;
       *) binavail=1 ;;
     esac
+    if [ $arch = "armv7l" ]; then 
+      binavail=0
+    fi
     if [ $binavail -eq 1 ]; then
       local t="$version-$os-$arch"
       local url="http://nodejs.org/dist/v$version/node-v${t}.tar.gz"
