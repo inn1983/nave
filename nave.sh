@@ -295,7 +295,7 @@ build () {
     if [ "$NAVE_CONFIG" == "" ]; then
       NAVE_CONFIG=()
     fi
-    JOBS=$jobs ./configure "${NAVE_CONFIG[@]}" --prefix="$2" \
+    JOBS=$jobs ./configure --without-snapshot "${NAVE_CONFIG[@]}" --prefix="$2" \
       || fail "Failed to configure $version"
     JOBS=$jobs make -j$jobs \
       || fail "Failed to make $version"
